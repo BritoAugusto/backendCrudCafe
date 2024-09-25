@@ -10,4 +10,11 @@ app.listen(app.get('port'), ()=>{
 
 //2-configurar middlewares
 
+//agregar como recibir conexiones remotas
+
 //3-configurar las rutas
+
+app.get('/prueba', (req, res, next)=>{
+    console.log('desde la funcion de prueba')
+    res.send('Desde el backend del proyecto crudCafe')
+})
