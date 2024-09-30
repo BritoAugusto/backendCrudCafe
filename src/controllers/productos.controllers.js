@@ -44,14 +44,16 @@ export const obtenerProducto = async (req, res) => {
     //extraer de la solicitud el id
     console.log(req.params.id)
     //pedirle a la BD que busque ese producto que tiene tal id}
-
+const productoBuscado = await Producto.findById(req.params.id);
+//agregar una respuesta adicional cuando productoBuscado es null---
     //enviar en la respuesta el producto
-   
+    console.log(productoBuscado)
+    res.status(200).json(productoBuscado);
   } catch (error) {
     //enviar un mensaje de error
     console.error(error);
-    res.status(404).json({
-      mensaje: "Ocurrio un error, no se encontraron los productos",
+    res.status(500).json({
+      mensaje: "Ocurrio un error, no se pudo obtener el producto",
     });
   }
 };

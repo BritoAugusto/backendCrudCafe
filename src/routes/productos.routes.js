@@ -4,6 +4,6 @@ import {crearProducto, leerPrueba, listarProductos, obtenerProducto} from "../co
 const router = Router();
 router.route("/prueba").get(leerPrueba);
 router.route("/productos").post(crearProducto).get(listarProductos)
-router.route("/productos:id").get(obtenerProducto)
+router.route("/productos/:id").get(obtenerProducto)
 
 export default router;
