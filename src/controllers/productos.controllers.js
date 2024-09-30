@@ -39,5 +39,22 @@ export const listarProductos = async(req, res)=>{
     }
 }
 
+export const obtenerProducto = async (req, res) => {
+  try {
+    //extraer de la solicitud el id
+    console.log(req.params.id)
+    //pedirle a la BD que busque ese producto que tiene tal id}
+
+    //enviar en la respuesta el producto
+   
+  } catch (error) {
+    //enviar un mensaje de error
+    console.error(error);
+    res.status(404).json({
+      mensaje: "Ocurrio un error, no se encontraron los productos",
+    });
+  }
+};
+
 
 
