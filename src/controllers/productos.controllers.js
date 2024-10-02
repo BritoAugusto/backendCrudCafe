@@ -98,7 +98,7 @@ export const editarProducto = async (req, res) =>{
 
     }
     //pedir a la bd que modifique el producto
-    const productoEditado = await Producto.findByIdAndUpdate(req.params.id,req.body);
+    await Producto.findByIdAndUpdate(req.params.id,req.body);
     res.status(200).json({
       mensaje:'El producto fue editado correctamente'
     })
