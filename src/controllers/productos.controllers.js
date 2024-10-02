@@ -84,3 +84,28 @@ export const borrarProducto = async (req, res) => {
     });
   }
 };
+
+export const editarProducto = async (req, res) =>{
+  try {
+    //necesito el id y el body
+    //validar los datos del body
+    //pedir a la bd que busque si esta el id, sino envio codigo de error
+    const productoBuscado = await Producto.findById(req.params.id)
+    if(!productoBuscado){
+      return  res.status(404).json({
+        mensaje:'Ocurrio un error al intentar editar el producto'
+      })
+
+    }
+    //pedir a la bd que modifique el producto
+    const productoEditado = await Producto.findByIdAndUpdate(req.params.id,req.body);
+    res.status(200).json({
+      mensaje:'El producto fue editado correctamente'
+    })
+  } catch (error) {
+     console.error(error);
+     res.status(500).json({
+       mensaje: "Ocurrio un error al intentar editar un producto",
+     });
+  }
+}
