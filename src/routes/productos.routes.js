@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-    borrarProducto,
+  borrarProducto,
   crearProducto,
   editarProducto,
   leerPrueba,
@@ -9,15 +9,42 @@ import {
 } from "../controllers/productos.controllers.js";
 import { check } from "express-validator";
 
-
 const router = Router();
 router.route("/prueba").get(leerPrueba);
-router.route("/productos").post([
-  check("nombreProducto").notEmpty().withMessage('El nombre del producto es un dato obligatorio').isLength({
-    min: 2,
-    max: 50
-  }).withMessage('El nombre del producto debe contener como minimo 2 caracteres y como maximo 50 inclusive')
-],crearProducto).get(listarProductos);
-router.route("/productos/:id").get(obtenerProducto).delete(borrarProducto).put(editarProducto);
+router
+  .route("/productos")
+  .post(
+    [
+      check("nombreProducto")
+        .notEmpty()
+        .withMessage("El nombre del producto es un dato obligatorio")
+        .isLength({
+          min: 2,
+          max: 50,
+        })
+        .withMessage(
+          "El nombre del producto debe contener como minimo 2 caracteres y como maximo 50 inclusive"
+        ),
+        check("precio")
+        .notEmpty()
+        .withMessage('El precio es un dato obligatorio')
+        .isNumeric()
+        .withMessage('El precio debe ser un número')
+        .custom((valor)=>{
+         if(valor >= 50 && valor <= 20000){
+          return true;
+         }else{
+          throw new Error("El precio ingresado debe  estar entre $50 y $20000 inclusive");
+         }
+        })
+    ],
+    crearProducto
+  )
+  .get(listarProductos);
+router
+  .route("/productos/:id")
+  .get(obtenerProducto)
+  .delete(borrarProducto)
+  .put(editarProducto);
 
 export default router;
