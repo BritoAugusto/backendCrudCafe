@@ -7,15 +7,14 @@ import {
   listarProductos,
   obtenerProducto,
 } from "../controllers/productos.controllers.js";
-import { check } from "express-validator";
+import validacionProducto from "../helpers/validacionProducto.js";
 
 const router = Router();
 router.route("/prueba").get(leerPrueba);
 router
   .route("/productos")
   .post(
-    [
-      ],
+    [validacionProducto],
     crearProducto
   )
   .get(listarProductos);
@@ -23,6 +22,6 @@ router
   .route("/productos/:id")
   .get(obtenerProducto)
   .delete(borrarProducto)
-  .put(editarProducto);
+  .put([validacionProducto],editarProducto);
 
 export default router;
