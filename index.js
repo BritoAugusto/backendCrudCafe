@@ -33,5 +33,5 @@ app.use(express.static(path.join(__dirname, '/public'))) //configuramos un archi
 //3-configurar las rutas
 
 app.use("/api",productoRouter)
-app.use("/api",usuarioRouter)
+app.use("/api/usuarios",usuarioRouter)
 

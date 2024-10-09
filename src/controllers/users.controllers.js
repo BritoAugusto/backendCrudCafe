@@ -3,6 +3,8 @@ import User from "../database/model/users.js";
 export const crearUser = async (req, res) => {
   try {
     const userNuevo = new User(req.body);
+    //encriptar password
+    
     await userNuevo.save();
     res.status(201).json({
       mensaje: "El usuario fue creado correctamente",
