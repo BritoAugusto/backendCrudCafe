@@ -50,7 +50,7 @@ export const login = async (req, res) => {
     //el usuario y passsword son correctos
     res.status(200).json({
       mensaje: "Los datos del usuario son correctos",
-      email: email,
+      nombreUser: usuarioExistente.nombreUser,
     });
   } catch (error) {
     console.error(error);
