@@ -1,6 +1,14 @@
 import mongoose, { Schema } from "mongoose";
 
 const userSchema = new Schema({
+  nombreUser: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    minLength: 3,
+    maxLength: 50,
+  },
   email: {
     type: String,
     required: true,
@@ -19,11 +27,11 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true,
-    minLength: 4,
+    minLength: 8,
     maxLength: 100,
     trim: true,
     validate: (value) => {
-      return /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,16}$/.test(
+      return /^(?=.*\d)(?=.*[\u0021-\u002b\u003c-\u0040])(?=.*[A-Z])(?=.*[a-z])\S{8,100}$/.test(
         value
       );
     },

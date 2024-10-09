@@ -9,7 +9,7 @@ const resultadoValidacion =  (req,res,next)=>{
       return res.status(400).json(errors.array());
     }
     //continuar con la ejecucion del siguiente codigo
-    next()
+    next();
 }
 
 export default resultadoValidacion;

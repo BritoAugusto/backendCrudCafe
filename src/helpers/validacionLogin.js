@@ -1,14 +1,7 @@
 import { check } from "express-validator";
 import resultadoValidacion from "./resultadoValidacion.js";
 
-const validacionUsuario = [
-  check("nombreUser")
-    .notEmpty()
-    .withMessage("El nombre de usuario es un dato obligatorio")
-    .isLength({ min: 3, max: 50 })
-    .withMessage(
-      "El nombre de usuario debe contener entre 3 y 50 caracteres."
-    ),
+const validacionLogin = [
   check("email")
     .notEmpty()
     .withMessage("El email es un dato obligatorio")
@@ -38,4 +31,4 @@ const validacionUsuario = [
   (req, res, next) => resultadoValidacion(req, res, next),
 ];
 
-export default validacionUsuario;
+export default validacionLogin;
