@@ -55,7 +55,7 @@ export const login = async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({
-      mensaje: "Ocurrio un error, no se pudo crear el usuario",
+      mensaje: "Ocurrio un error, no se pudo loguear el usuario",
     });
   }
 };

@@ -13,7 +13,7 @@ router.route("/")
 .get(listarUsers);
 
 router.route("/login")
-.post([validacionLogin],login)
+.post([validacionLogin],login);
 
 
 export default router;
