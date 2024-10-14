@@ -11,7 +11,7 @@ const verificarJWT = (req, res, next) => {
       .json({ mensaje: "No hay token de autenticacion" });
     }
     //el token si viene en el req
-    const payload = jwt.verify(token, process.env.SECRETO);
+    const payload = jwt.verify(token, process.env.SECRET_JWT);
     console.log(payload)
     //continuo con la siguiente ejecucion por crearProd, borrarProd, editarProd
     next();
