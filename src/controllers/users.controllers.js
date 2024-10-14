@@ -1,5 +1,6 @@
 import User from "../database/model/users.js";
 import bcrypt from "bcrypt";
+import generarJWT from "../helpers/generarJWT.js";
 
 export const crearUser = async (req, res) => {
   try {
@@ -37,20 +38,24 @@ export const login = async (req, res) => {
     }
 
     //verificar si el password es el mismo
-    const passworValido = bcrypt.compareSync(
+    const passwordValido = bcrypt.compareSync(
       password,
       usuarioExistente.password
     );
     //si no es valido el password
-    if (!passworValido) {
+    if (!passwordValido) {
       return res.status(400).json({
         mensaje: "Correo electronico o password incorrecta --password",
       });
     }
+    //aqui genero el token para generar una respuesta
+    const token = await generarJWT(usuarioExistente._id,email)
     //el usuario y passsword son correctos
     res.status(200).json({
       mensaje: "Los datos del usuario son correctos",
       nombreUser: usuarioExistente.nombreUser,
+      email,
+      token
     });
   } catch (error) {
     console.error(error);

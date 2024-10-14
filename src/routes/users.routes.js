@@ -7,6 +7,7 @@ import {
 import validacionUsuario from "../helpers/validacionUsuarios.js"
 import validacionLogin from "../helpers/validacionLogin.js";
 
+
 const router = Router();
 router.route("/")
 .post([validacionUsuario],crearUser)
