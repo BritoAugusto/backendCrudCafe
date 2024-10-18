@@ -21,7 +21,7 @@ router
   .get(listarProductos);
 router
   .route("/productos/:id")
-  .get([verificarJWT],obtenerProducto)
+  .get(obtenerProducto)
   .delete(borrarProducto)
   .put([verificarJWT,validacionProducto],editarProducto);
 
